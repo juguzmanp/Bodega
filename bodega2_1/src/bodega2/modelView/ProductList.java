@@ -20,7 +20,7 @@ public class ProductList {
     LinkedHashMap<String, Producto> sortedMap = new LinkedHashMap<>();
     HashMap<String, Producto> mapaProductos = new HashMap<>();
     List<Producto> listaProductos = new ArrayList<>();
-    List<String> listaEnteros = new ArrayList<>();
+    List<Integer> listaEnteros = new ArrayList<>();
     List<String> listaStrings = new ArrayList<>();
     FirebaseSaveObject firebaseSave = new FirebaseSaveObject();
     //HashMap<String, Producto> mapaProductos = firebaseSave.recoverMap();
@@ -81,15 +81,11 @@ public class ProductList {
         listaEnteros.removeAll(listaEnteros);
         for (Map.Entry<String, Producto> entry : mapaProductos.entrySet()) {
             listaProductos.add(entry.getValue());
-            listaEnteros.add(Integer.toString(entry.getValue().getPrecio()));
+            listaEnteros.add(entry.getValue().getPrecio());
         }
-        Collections.sort(listaEnteros, new Comparator<String>() {
-            public int compare(String str, String str1) {
-                return (str).compareTo(str1);
-            }
-        });
-        for (String str : listaEnteros) {
-            Integer x = Integer.valueOf(str);
+        Collections.sort(listaEnteros);
+        
+        for (int x : listaEnteros) {
             for (Entry<String, Producto> entry : mapaProductos.entrySet()) {
                 if (entry.getValue().getPrecio()== x) {
                     sortedMap.put(entry.getKey(), entry.getValue());
@@ -106,15 +102,11 @@ public class ProductList {
         listaEnteros.removeAll(listaEnteros);
         for (Map.Entry<String, Producto> entry : mapaProductos.entrySet()) {
             listaProductos.add(entry.getValue());
-            listaEnteros.add(Integer.toString(entry.getValue().getCantidad()));
+            listaEnteros.add(entry.getValue().getCantidad());
         }
-        Collections.sort(listaEnteros, new Comparator<String>() {
-            public int compare(String str, String str1) {
-                return (str).compareTo(str1);
-            }
-        });
-        for (String str : listaEnteros) {
-            Integer x = Integer.valueOf(str);
+        Collections.sort(listaEnteros);
+        
+        for (int x : listaEnteros) {
             for (Entry<String, Producto> entry : mapaProductos.entrySet()) {
                 if (entry.getValue().getCantidad()== x) {
                     sortedMap.put(entry.getKey(), entry.getValue());
